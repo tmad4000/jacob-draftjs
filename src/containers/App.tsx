@@ -1,4 +1,5 @@
 import * as React from "react";
+import MyEditor from "./MyEditor"
 
 
 export interface AppState {
@@ -20,7 +21,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
 
 
-hi
+<MyEditor />
 
         </div>)
 
