@@ -41,7 +41,7 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
                         break
                     }
                     else if (c === ">") {
-                        for (i = i - 1; i > 0; i--) {
+                        for (i = i - 1; i >= 0; i--) {
                             if (edText.charAt(i) === "<") {
                                 shouldSelect = true
                                 break mainSearch
