@@ -50,7 +50,7 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
                     }
                     // debugger
                     // c.match(/ /)
-                    else if (c===" ") {
+                    else if (c.match(/\s/) {
                         break                        
                     }
                 }
