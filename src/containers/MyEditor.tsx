@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, SelectionState } from 'draft-js';
 
 export interface MyEditorState {
     editorState: any
@@ -17,7 +17,49 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
     constructor(props) {
         super(props);
         this.state = { editorState: EditorState.createEmpty() };
-        this.onChange = (editorState) => this.setState({ editorState });
+        this.onChange = (editorState: EditorState) => {
+
+            // console.log(editorState.getCurrentContent().getPlainText())
+            // console.log(editorState.getSelection().getAnchorOffset())
+            if (editorState.getLastChangeType() === "backspace-character") {
+                let fo = editorState.getSelection().getFocusOffset() + 1
+
+                let selectionState = editorState.getSelection();
+
+
+                let edText = editorState.getCurrentContent().getPlainText()
+                let shouldSelect = false
+
+                let i: number = 0
+                for (i = fo; i > 0; i--) {
+                    let c = edText.charAt(i)
+                    if (c.match("#|@")) {
+                        shouldSelect = true
+                        break
+                    }
+
+                    else if (c.match(/W/))
+                        break
+                }
+
+                if (shouldSelect) {
+                 console.log(i)
+                
+                    let newSel: SelectionState = selectionState.set('anchorOffset', fo).set('focusOffset', Math.max(0, i)).set('isBackward', true) as SelectionState;
+
+                    this.setState((prevState) => {
+                        return {
+                            editorState: EditorState.forceSelection(prevState.editorState, newSel)
+                        }
+                    });
+                    return
+                }
+
+            }
+
+            this.setState({ editorState });
+        }
+
     }
     render() {
         return (

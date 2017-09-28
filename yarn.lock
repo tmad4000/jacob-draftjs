@@ -178,6 +178,13 @@
     "@types/d3-voronoi" "*"
     "@types/d3-zoom" "*"
 
+"@types/draft-js@^0.10.13":
+  version "0.10.13"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.10.13.tgz#cf9cf3a0cb5614056673bd07a6541014fbb093fe"
+  dependencies:
+    "@types/react" "*"
+    immutable "^3.8.1"
+
 "@types/geojson@*":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.4.tgz#f6e011bf3f7eea616cce79b6f1a0722010822f3a"
@@ -2502,7 +2509,7 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@4.0.1, object-assign@^4.0.1:
+object-assign@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.0.1.tgz#99504456c3598b5cad4fc59c26e8a9bb107fe0bd"
 
@@ -2510,7 +2517,7 @@ object-assign@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-2.1.1.tgz#43c36e5d569ff8e4816c4efa8be02d26967c18aa"
 
-object-assign@^4.1.0, object-assign@^4.1.1:
+object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
