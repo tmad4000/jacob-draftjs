@@ -37,14 +37,21 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
                         shouldSelect = true
                         break
                     }
+                    if (c == ">") {
+                        if (edText.charAt(i - 1) === "<") {
+                            i--
+                            shouldSelect = true
+                            break
+                        }
+                    }
 
                     else if (c.match(/W/))
                         break
                 }
 
                 if (shouldSelect) {
-                 console.log(i)
-                
+                    console.log(i)
+
                     let newSel: SelectionState = selectionState.set('anchorOffset', fo).set('focusOffset', Math.max(0, i)).set('isBackward', true) as SelectionState;
 
                     this.setState((prevState) => {
