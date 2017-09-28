@@ -33,7 +33,7 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
                 let i: number = 0
 
                 mainSearch:
-                for (i = fo; i > 0; i--) {
+                for (i = fo; i >= 0; i--) {
                     let c = edText.charAt(i)
                     console.log(c)
                     if (c.match("#|@")) {
@@ -50,7 +50,7 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
                     }
                     // debugger
                     // c.match(/ /)
-                    else if (c.match(/\s/) {
+                    else if (c.match(/\s/)) {
                         break                        
                     }
                 }
