@@ -1,7 +1,7 @@
 import * as React from "react";
 import MyEditor from "./MyEditor"
 import MyInput from "./MyInput"
-import EntityEditor from "./EntityEditor"
+// import EntityEditor from "./EntityEditor"
 
 
 export interface AppState {

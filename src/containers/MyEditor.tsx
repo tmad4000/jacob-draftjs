@@ -22,31 +22,37 @@ export default class MyEditor extends React.Component<MyEditorProps, MyEditorSta
             // console.log(editorState.getCurrentContent().getPlainText())
             // console.log(editorState.getSelection().getAnchorOffset())
             if (editorState.getLastChangeType() === "backspace-character") {
-                let fo = editorState.getSelection().getFocusOffset() + 1
+                let fo = this.state.editorState.getSelection().getFocusOffset() 
 
-                let selectionState = editorState.getSelection();
+                let selectionState = this.state.editorState.getSelection();
 
 
-                let edText = editorState.getCurrentContent().getPlainText()
+                let edText = this.state.editorState.getCurrentContent().getPlainText()
                 let shouldSelect = false
 
                 let i: number = 0
+
+                mainSearch:
                 for (i = fo; i > 0; i--) {
                     let c = edText.charAt(i)
+                    console.log(c)
                     if (c.match("#|@")) {
                         shouldSelect = true
                         break
                     }
-                    if (c == ">") {
-                        if (edText.charAt(i - 1) === "<") {
-                            i--
-                            shouldSelect = true
-                            break
+                    else if (c === ">") {
+                        for (i = i - 1; i > 0; i--) {
+                            if (edText.charAt(i) === "<") {
+                                shouldSelect = true
+                                break mainSearch
+                            }
                         }
                     }
-
-                    else if (c.match(/W/))
-                        break
+                    // debugger
+                    // c.match(/ /)
+                    else if (c===" ") {
+                        break                        
+                    }
                 }
 
                 if (shouldSelect) {
