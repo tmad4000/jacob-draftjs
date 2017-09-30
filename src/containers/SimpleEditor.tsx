@@ -13,10 +13,14 @@ export interface SimpleEditorProps extends React.Props<SimpleEditor> {
 
 export default class SimpleEditor extends React.Component<SimpleEditorProps, SimpleEditorState> {
     onChange: any
+    focus: any
+    logState: any
+
 
     constructor(props) {
         super(props);
         this.state = { editorState: EditorState.createEmpty() };
+
         this.onChange = (editorState: EditorState) => {
             let nextEditorState: EditorState = editorState
 
@@ -31,7 +35,7 @@ export default class SimpleEditor extends React.Component<SimpleEditorProps, Sim
 
 
 
-                    console.log(editorState.getCurrentContent().getPlainText())
+                    // console.log(editorState.getCurrentContent().getPlainText())
 
                     let newContentState = Modifier.insertText(
                         editorState.getCurrentContent(),
@@ -43,18 +47,52 @@ export default class SimpleEditor extends React.Component<SimpleEditorProps, Sim
                         newContentState,
                         "insert-characters"
                     )
+
+
+                    const contentState = nextEditorState.getCurrentContent();
+                    const contentStateWithEntity = contentState.createEntity(
+                        'LINK',
+                        'MUTABLE',
+                        { url: 'http://www.zombo.com' }
+                    );
+                    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+                    const contentStateWithLink = Modifier.applyEntity(
+                        contentStateWithEntity,
+                        nextEditorState.getSelection(),
+                        entityKey
+                    );
+
+                    nextEditorState = EditorState.push(
+                        nextEditorState,
+                        contentStateWithLink,
+                        "apply-entity"
+                    )
                 }
             }
 
-            console.log(editorState.toJS())
+
             this.setState({ editorState: nextEditorState });
         }
+        this.logState = () => console.log(this.state.editorState.toJS());
+
 
     }
     render() {
         return (
-            <div style={{ border: "1px solid pink" }}>
-                <Editor editorState={this.state.editorState} onChange={this.onChange} />
+            <div>
+                <div style={{ border: "1px solid pink" }}>
+                    <Editor
+                        ref={(ed) => ed && ed.focus()}
+                        editorState={this.state.editorState} onChange={this.onChange} />
+
+
+                </div>
+
+                <input
+                    onClick={this.logState}
+                    type="button"
+                    value="Log State"
+                />
             </div>
         );
     }
