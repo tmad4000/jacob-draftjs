@@ -1,6 +1,7 @@
 import * as React from "react";
 import MyEditor from "./MyEditor"
 import MyInput from "./MyInput"
+import SimpleEditor from "./SimpleEditor"
 // import EntityEditor from "./EntityEditor"
 
 
@@ -31,7 +32,7 @@ export default class App extends React.Component<AppProps, AppState> {
                 return { txt: prevState.txt + "yo" }
             })
             }> yo </button>
-            <MyEditor />
+            <SimpleEditor />
 
         </div>)
 
