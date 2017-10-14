@@ -19,7 +19,7 @@ export interface EntityEditorProps extends React.Props<EntityEditor> {
 
 
 
-const rawContent = {
+const rawContent:any = {
     blocks: [
         {
             text: (
